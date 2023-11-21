@@ -1,12 +1,11 @@
 const app = require("./src/app");
+const {app: {port}} = require('./src/configs/config.environment')
 
-const PORT = process.env.PORT || 3000;
-
-const server = app.listen(PORT, () => {
-	console.log("Server is running on port: " + PORT);
+const server = app.listen(port, () => {
+	console.log("Server is running on port: " + port);
 });
 
-process.on("SIGINT", () => {
+process.on("SIGINT", () => {	//handle ctrl + c
 	server.close(() => console.log("Exit Server Express!"));
 	// process.exit();
 })
