@@ -10,16 +10,19 @@ app.use(helmet());			//secure express app by setting various HTTP headers
 app.use(compression());		//compress data sent to client
 
 //init database
+require('./databases/init.mongodb');
+const {checkOverLoad } = require('./helpers/check.connect')
+// checkOverLoad();
 
 //init routes
 app.get('/test', (req, res, next) => {
-	const str = "Hello World!";
 	return res.status(200).json({
-		metadata: str.repeat(100000),
+		// metadata: "Testing is Life!".repeat(100000),	//test compression
 		message: "Welcome to E-commerce ExpressJS!",
 	});
 });
 
 //handle errors
+
 
 module.exports = app;
